@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "task-service", url = "http://localhost:8083")
+@FeignClient(value = "task-service", url = "http://35.158.18.223:8083")
 public interface TaskClient {
 
     @PutMapping("/api/v1/task/complete/project/{projectCode}")
