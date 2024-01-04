@@ -2,6 +2,8 @@ package com.cydeo.repository;
 
 import com.cydeo.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +14,8 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findAllByAssignedManager(String assignedManager);
 
-    Integer countByAssignedManager(String assignedManager);
+    @Query(nativeQuery = true, value = "SELECT * FROM projects WHERE assigned_manager = :assignedManager " +
+            "AND project_status <> 'COMPLETED' AND is_deleted = false")
+    Integer countNonCompletedByAssignedManager(@Param("assignedManager") String assignedManager);
 
 }

@@ -108,10 +108,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Integer countByAssignedManager(String assignedManager) {
+    public Integer countNonCompletedByAssignedManager(String assignedManager) {
 
         if (keycloakService.hasClientRole(assignedManager, "Manager")) {
-            return projectRepository.countByAssignedManager(assignedManager);
+            return projectRepository.countNonCompletedByAssignedManager(assignedManager);
         }
 
         throw new ManagerNotFoundException("User is not a manager.");

@@ -13,7 +13,7 @@ public interface ProjectService {
     List<ProjectDTO> readAllProjectsWithDetails();
     List<ProjectDTO> adminReadAllProjects();
     List<ProjectDTO> managerReadAllProjects();
-    Integer countByAssignedManager(String assignedManager);
+    Integer countNonCompletedByAssignedManager(String assignedManager);
     boolean checkByProjectCode(String projectCode);
 
     ProjectDTO update(String projectCode, ProjectDTO projectDTO);

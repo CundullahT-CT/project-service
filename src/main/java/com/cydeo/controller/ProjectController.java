@@ -120,9 +120,9 @@ public class ProjectController {
 
     @RolesAllowed("Admin")
     @GetMapping("/count/manager/{assignedManager}")
-    ResponseEntity<ResponseWrapper> getCountByAssignedManager(@PathVariable("assignedManager") String assignedManager) {
+    ResponseEntity<ResponseWrapper> getNonCompletedCountByAssignedManager(@PathVariable("assignedManager") String assignedManager) {
 
-        Integer projectCount = projectService.countByAssignedManager(assignedManager);
+        Integer projectCount = projectService.countNonCompletedByAssignedManager(assignedManager);
 
         return ResponseEntity
                 .ok(ResponseWrapper.builder()
