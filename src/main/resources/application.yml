@@ -52,3 +52,10 @@ management:
       exposure:
         include: "*"
   context-path: http://18.193.67.179:${server.port}/actuator
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
