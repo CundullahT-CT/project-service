@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
                         .build());
     }
 
-    @ExceptionHandler({ManagerNotFoundException.class, ProjectNotFoundException.class, UserNotFoundException.class})
+    @ExceptionHandler({ProjectNotFoundException.class, UserNotFoundException.class})
     public ResponseEntity<ExceptionWrapper> handleNotFoundExceptions(Throwable exception) {
         log.error(exception.getMessage());
         ExceptionWrapper exceptionWrapper = ExceptionWrapper.builder()
