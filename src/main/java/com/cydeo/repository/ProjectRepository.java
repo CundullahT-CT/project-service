@@ -14,7 +14,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findAllByAssignedManager(String assignedManager);
 
-    @Query(value = "SELECT * FROM projects WHERE assigned_manager = :assignedManager " +
+    @Query(value = "SELECT COUNT(*) FROM projects WHERE assigned_manager = :assignedManager " +
             "AND project_status <> 'COMPLETED' AND is_deleted = false", nativeQuery = true)
     int countNonCompletedByAssignedManager(@Param("assignedManager") String assignedManager);
 
