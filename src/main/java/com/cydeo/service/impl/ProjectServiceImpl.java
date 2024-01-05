@@ -90,8 +90,19 @@ public class ProjectServiceImpl implements ProjectService {
 
     }
 
-    public List<ProjectDTO> readAllProjectsWithDetailsFallback() {
-        return new ArrayList<>();
+    List<ProjectDTO> readAllProjectsWithDetailsFallback(Throwable throwable) {
+        return Arrays.asList(ProjectDTO.builder()
+                .nonCompletedTaskCount(0)
+                .completedTaskCount(0)
+                .projectDetail("")
+                .projectName("")
+                .projectCode("")
+                .assignedManager("")
+                .endDate(null)
+                .startDate(null)
+                .projectStatus(null)
+                .id(null)
+                .build());
     }
 
     @Override
