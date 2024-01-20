@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({ProjectAlreadyExistsException.class, ProjectIsCompletedException.class,
-            RelatedTasksCanNotBeCompleted.class, RelatedTasksCanNotBeDeleted.class})
+            TasksCanNotBeCompletedException.class, TasksCanNotBeDeletedException.class})
     public ResponseEntity<ExceptionWrapper> handleConflictExceptions(Throwable exception) {
         log.error(exception.getMessage());
         ExceptionWrapper exceptionWrapper = ExceptionWrapper.builder()

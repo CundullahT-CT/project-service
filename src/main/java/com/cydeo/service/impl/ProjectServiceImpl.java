@@ -2,7 +2,7 @@ package com.cydeo.service.impl;
 
 import com.cydeo.client.TaskClient;
 import com.cydeo.dto.ProjectDTO;
-import com.cydeo.dto.TaskResponseDTO;
+import com.cydeo.dto.TaskResponse;
 import com.cydeo.entity.Project;
 import com.cydeo.enums.Status;
 import com.cydeo.exception.*;
@@ -216,7 +216,7 @@ public class ProjectServiceImpl implements ProjectService {
         ProjectDTO projectDTO = mapperUtil.convert(project, new ProjectDTO());
         String accessToken = keycloakService.getAccessToken();
 
-        ResponseEntity<TaskResponseDTO> response = taskClient.getCountsByProject(accessToken, project.getProjectCode());
+        ResponseEntity<TaskResponse> response = taskClient.getCountsByProject(accessToken, project.getProjectCode());
 
         if (Objects.requireNonNull(response.getBody()).isSuccess()) {
 
@@ -240,10 +240,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         String accessToken = keycloakService.getAccessToken();
 
-        ResponseEntity<TaskResponseDTO> response = taskClient.completeByProject(accessToken, projectCode);
+        ResponseEntity<TaskResponse> response = taskClient.completeByProject(accessToken, projectCode);
 
         if (!Objects.requireNonNull(response.getBody()).isSuccess()) {
-            throw new RelatedTasksCanNotBeCompleted("Related tasks cannot be completed. (Project: " + projectCode + ")");
+            throw new TasksCanNotBeCompletedException("Related tasks cannot be completed. (Project: " + projectCode + ")");
         }
 
     }
@@ -252,10 +252,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         String accessToken = keycloakService.getAccessToken();
 
-        ResponseEntity<TaskResponseDTO> response = taskClient.deleteByProject(accessToken, projectCode);
+        ResponseEntity<TaskResponse> response = taskClient.deleteByProject(accessToken, projectCode);
 
         if (!Objects.requireNonNull(response.getBody()).isSuccess()) {
-            throw new RelatedTasksCanNotBeDeleted("Related tasks cannot be deleted. (Project: " + projectCode + ")");
+            throw new TasksCanNotBeDeletedException("Related tasks cannot be deleted. (Project: " + projectCode + ")");
         }
 
     }
