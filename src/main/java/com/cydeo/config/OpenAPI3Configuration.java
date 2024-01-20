@@ -32,8 +32,8 @@ public class OpenAPI3Configuration {
 
     private Info getInfo() {
         return new Info()
-                .title("Ticketing App Rest")
-                .description("Api documentation")
+                .title("Project API Doc")
+                .description("API documentation for Ticketing App Project Operations")
                 .version("v1.0");
     }
 
