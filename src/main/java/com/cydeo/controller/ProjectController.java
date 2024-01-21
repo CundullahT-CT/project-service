@@ -217,7 +217,7 @@ public class ProjectController {
             @ApiResponse(responseCode = "403", description = "Access is denied",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionWrapper.class),
                             examples = @ExampleObject(value = SwaggerExamples.ACCESS_DENIED_FORBIDDEN_RESPONSE_EXAMPLE)))})
-    ResponseEntity<ResponseWrapper> getNonCompletedCountByAssignedManager(@PathVariable("assignedManager") String assignedManager) {
+    public ResponseEntity<ResponseWrapper> getNonCompletedCountByAssignedManager(@PathVariable("assignedManager") String assignedManager) {
 
         Integer projectCount = projectService.countNonCompletedByAssignedManager(assignedManager);
 
