@@ -98,7 +98,7 @@ public class SwaggerExamples {
             "    {\n" +
             "      \"projectName\": \"Demo Project - 2\",\n" +
             "      \"projectCode\": \"SP999\",\n" +
-            "      \"assignedManager\": \"jane.doe@example.com\",\n" +
+            "      \"assignedManager\": \"john.doe@example.com\",\n" +
             "      \"startDate\": \"2024-01-01\",\n" +
             "      \"endDate\": \"2024-12-31\",\n" +
             "      \"projectDetail\": \"This is a sample project for demonstration purposes.\",\n" +
@@ -126,7 +126,7 @@ public class SwaggerExamples {
             "    {\n" +
             "      \"projectName\": \"Demo Project - 2\",\n" +
             "      \"projectCode\": \"SP999\",\n" +
-            "      \"assignedManager\": \"jane.doe@example.com\",\n" +
+            "      \"assignedManager\": \"john.doe@example.com\",\n" +
             "      \"startDate\": \"2024-01-01\",\n" +
             "      \"endDate\": \"2024-12-31\",\n" +
             "      \"projectDetail\": \"This is a sample project for demonstration purposes.\",\n" +
