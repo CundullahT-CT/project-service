@@ -132,14 +132,17 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public boolean checkByProjectCode(String projectCode) {
 
-        Project foundProject = projectRepository.findByProjectCode(projectCode)
-                .orElseThrow(() -> new ProjectNotFoundException("Project does not exist."));
+        Optional<Project> foundProject = projectRepository.findByProjectCode(projectCode);
 
-        if (foundProject.getProjectStatus().getValue().equals("Completed")) {
+        if (foundProject.isEmpty()) {
+            return false;
+        }
+
+        if (foundProject.get().getProjectStatus().getValue().equals("Completed")) {
             throw new ProjectIsCompletedException("Project is already completed.");
         }
 
-        checkAccess(foundProject);
+        checkAccess(foundProject.get());
 
         return true;
 

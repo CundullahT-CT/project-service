@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class GlobalExceptionHandler {
                         .success(false)
                         .message("Action failed: An error occurred!")
                         .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .localDateTime(LocalDateTime.now())
                         .build());
     }
 
@@ -38,18 +40,19 @@ public class GlobalExceptionHandler {
                 .success(false)
                 .message(exception.getMessage())
                 .httpStatus(HttpStatus.NOT_FOUND)
+                .localDateTime(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionWrapper);
     }
 
-    @ExceptionHandler({ProjectAlreadyExistsException.class, ProjectIsCompletedException.class,
-            TasksCanNotBeCompletedException.class, TasksCanNotBeDeletedException.class})
+    @ExceptionHandler({ProjectAlreadyExistsException.class, ProjectIsCompletedException.class})
     public ResponseEntity<ExceptionWrapper> handleConflictExceptions(Throwable exception) {
         log.error(exception.getMessage());
         ExceptionWrapper exceptionWrapper = ExceptionWrapper.builder()
                 .success(false)
                 .message(exception.getMessage())
                 .httpStatus(HttpStatus.CONFLICT)
+                .localDateTime(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionWrapper);
     }
@@ -61,17 +64,19 @@ public class GlobalExceptionHandler {
                 .success(false)
                 .message(exception.getMessage())
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .localDateTime(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionWrapper);
     }
 
-    @ExceptionHandler(ProjectDetailsNotRetrievedException.class)
+    @ExceptionHandler({ProjectDetailsNotRetrievedException.class, TasksCanNotBeCompletedException.class, TasksCanNotBeDeletedException.class})
     public ResponseEntity<ExceptionWrapper> handleNotRetrievedExceptions(Throwable exception) {
         log.error(exception.getMessage());
         ExceptionWrapper exceptionWrapper = ExceptionWrapper.builder()
                 .success(false)
                 .message(exception.getMessage())
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                .localDateTime(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionWrapper);
     }
@@ -83,6 +88,7 @@ public class GlobalExceptionHandler {
                 .success(false)
                 .message(exception.getMessage())
                 .httpStatus(HttpStatus.FORBIDDEN)
+                .localDateTime(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionWrapper);
     }
@@ -94,6 +100,7 @@ public class GlobalExceptionHandler {
                 .success(false)
                 .message("Invalid Input(s)")
                 .httpStatus(HttpStatus.BAD_REQUEST)
+                .localDateTime(LocalDateTime.now())
                 .build();
 
         List<ValidationExceptionWrapper> validationExceptions = collectValidationExceptions(exception);

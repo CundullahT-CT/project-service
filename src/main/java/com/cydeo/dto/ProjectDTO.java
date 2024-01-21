@@ -26,7 +26,7 @@ public class ProjectDTO {
     private Long id;
 
     @NotBlank(message = "Project name is required.")
-    @Size(min = 3, max = 16, message = "Project name length should be min 2, max 16.")
+    @Size(min = 3, max = 16, message = "Project name length should be min 3, max 16.")
     private String projectName;
 
     @NotBlank(message = "Project code is required.")
