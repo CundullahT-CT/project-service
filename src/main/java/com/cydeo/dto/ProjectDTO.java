@@ -48,9 +48,9 @@ public class ProjectDTO {
     private Status projectStatus;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Integer completedTaskCount;
+    private Long completedTaskCount;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Integer nonCompletedTaskCount;
+    private Long nonCompletedTaskCount;
 
 }

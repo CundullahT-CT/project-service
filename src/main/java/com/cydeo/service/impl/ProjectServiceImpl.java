@@ -92,8 +92,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     List<ProjectDTO> readAllProjectsWithDetailsFallback(Throwable throwable) {
         return Arrays.asList(ProjectDTO.builder()
-                .nonCompletedTaskCount(0)
-                .completedTaskCount(0)
+                .nonCompletedTaskCount(0L)
+                .completedTaskCount(0L)
                 .projectDetail("")
                 .projectName("")
                 .projectCode("")
@@ -223,10 +223,10 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (Objects.requireNonNull(response.getBody()).isSuccess()) {
 
-            Map<String, Integer> taskCounts = (HashMap<String, Integer>) response.getBody().getData();
+            Map<String, Long> taskCounts = (HashMap<String, Long>) response.getBody().getData();
 
-            Integer completedTaskCount = taskCounts.get("completedTaskCount");
-            Integer nonCompletedTaskCount = taskCounts.get("nonCompletedTaskCount");
+            Long completedTaskCount = taskCounts.get("completedTaskCount");
+            Long nonCompletedTaskCount = taskCounts.get("nonCompletedTaskCount");
 
             projectDTO.setCompletedTaskCount(completedTaskCount);
             projectDTO.setNonCompletedTaskCount(nonCompletedTaskCount);
