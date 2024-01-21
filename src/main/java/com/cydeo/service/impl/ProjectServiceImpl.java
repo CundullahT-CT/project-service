@@ -79,7 +79,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    @CircuitBreaker(name = "task-service", fallbackMethod = "readAllProjectsWithDetailsFallback")
+//    @CircuitBreaker(name = "task-service", fallbackMethod = "readAllProjectsWithDetailsFallback")
     public List<ProjectDTO> readAllProjectsWithDetails() {
 
         String loggedInUserUsername = keycloakService.getUsername();
